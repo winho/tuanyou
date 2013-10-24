@@ -1,12 +1,18 @@
 package biz.winho.team;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import biz.winho.database.friendDb;
+import biz.winho.entity.Friendentity;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -24,7 +30,7 @@ public class MainActivity extends Activity {
 	
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
@@ -97,6 +103,19 @@ public class MainActivity extends Activity {
 			
 		}
 		
+	}
+	
+	public void addfriend (View view){
+		Friendentity person = new Friendentity(1, "sb", "meixinqing", "pengyou");
+     	friendDb db = new friendDb(this);
+
+		if (db.addfriend(person)) {
+			Log.i("TAG", "ok");
+	}
+		List<Friendentity> a = db.friendlist();
+		String k = a.get(0).getFriendname().toString();
+		Log.i("TAG", k);
+
 	}
 
 	@Override
