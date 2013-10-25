@@ -87,7 +87,7 @@ public class friendDb {
 						friendteam);
 			}
 		} catch (Exception e) {
-			System.out.println("zhaocuo");
+			System.out.println("zhacuo");
 
 		}
 		return null;
@@ -101,11 +101,11 @@ public class friendDb {
 
 	public List<Friendentity> friendlist() {
 		List<Friendentity> friendlist = new ArrayList<Friendentity>();
+		
 		SQLiteDatabase db = dbopenhelp.getReadableDatabase();
-		try {
-			Cursor cursor = db.rawQuery(
-					"select * from friend order by friendid", null);
-			while (cursor.moveToNext()) {
+		try{ 
+			Cursor cursor=db.rawQuery("select * from friend", null);
+			while(cursor.moveToNext()){
 				int friendid = cursor.getInt(cursor.getColumnIndex("friendid"));
 				String friendname = cursor.getString(cursor
 						.getColumnIndex("friendname"));
@@ -113,15 +113,15 @@ public class friendDb {
 						.getColumnIndex("friendmood"));
 				String friendteam = cursor.getString(cursor
 						.getColumnIndex("friendteam"));
-				friendlist.add(new Friendentity(friendid, friendname,
-						friendmood, friendteam));
+			friendlist.add(new Friendentity(friendid, friendname, friendmood,
+						friendteam));
 			}
 			return friendlist;
 
 		} catch (Exception e) {
 			System.out.println("zhaocuo");
 		}
-		return friendlist;
+		return null;
 	}
 
 }

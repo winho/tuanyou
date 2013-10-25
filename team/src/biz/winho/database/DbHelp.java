@@ -28,8 +28,9 @@ public class DbHelp extends SQLiteOpenHelper {
 		a.append("friendname varchar(20),");
 		a.append("friendmood varchar(70),");
 		a.append("friendteam varchar(20))");
-
+		String team=("create table team ( id integer primary key autoincrement,teamname varchar(20))");
 		db.execSQL(a.toString());
+		db.execSQL(team);
 
 	}
 
